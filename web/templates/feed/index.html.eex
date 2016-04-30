@@ -1,0 +1,44 @@
+<h2>Listing feeds</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Url</th>
+      <th>Author</th>
+      <th>Image</th>
+      <th>Link</th>
+      <th>Language</th>
+      <th>Subtitle</th>
+      <th>Summary</th>
+      <th>Title</th>
+      <th>Last retrieved</th>
+      <th>Schedule</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for feed <- @feeds do %>
+    <tr>
+      <td><%= feed.url %></td>
+      <td><%= feed.author %></td>
+      <td><%= feed.image %></td>
+      <td><%= feed.link %></td>
+      <td><%= feed.language %></td>
+      <td><%= feed.subtitle %></td>
+      <td><%= feed.summary %></td>
+      <td><%= feed.title %></td>
+      <td><%= feed.last_retrieved %></td>
+      <td><%= feed.schedule %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: feed_path(@conn, :show, feed), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: feed_path(@conn, :edit, feed), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: feed_path(@conn, :delete, feed), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New feed", to: feed_path(@conn, :new) %>

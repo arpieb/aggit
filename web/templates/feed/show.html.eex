@@ -1,0 +1,58 @@
+<h2>Show feed</h2>
+
+<ul>
+
+  <li>
+    <strong>Url:</strong>
+    <%= @feed.url %>
+  </li>
+
+  <li>
+    <strong>Author:</strong>
+    <%= @feed.author %>
+  </li>
+
+  <li>
+    <strong>Image:</strong>
+    <%= @feed.image %>
+  </li>
+
+  <li>
+    <strong>Link:</strong>
+    <%= @feed.link %>
+  </li>
+
+  <li>
+    <strong>Language:</strong>
+    <%= @feed.language %>
+  </li>
+
+  <li>
+    <strong>Subtitle:</strong>
+    <%= @feed.subtitle %>
+  </li>
+
+  <li>
+    <strong>Summary:</strong>
+    <%= @feed.summary %>
+  </li>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @feed.title %>
+  </li>
+
+  <li>
+    <strong>Last retrieved:</strong>
+    <%= @feed.last_retrieved %>
+  </li>
+
+  <li>
+    <strong>Schedule:</strong>
+    <%= @feed.schedule %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: feed_path(@conn, :edit, @feed) %>
+<%= link "Back", to: feed_path(@conn, :index) %>

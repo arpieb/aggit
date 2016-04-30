@@ -17,6 +17,9 @@ defmodule Aggit.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+
+    # Resource controllers.
+    resources "/feeds", FeedController
   end
 
   # Other scopes may use custom stacks.
