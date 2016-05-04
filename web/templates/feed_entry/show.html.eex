@@ -1,0 +1,53 @@
+<h2>Show feed entry</h2>
+
+<ul>
+
+  <li>
+    <strong>Link:</strong>
+    <%= @feed_entry.link %>
+  </li>
+
+  <li>
+    <strong>Author:</strong>
+    <%= @feed_entry.author %>
+  </li>
+
+  <li>
+    <strong>Duration:</strong>
+    <%= @feed_entry.duration %>
+  </li>
+
+  <li>
+    <strong>Enclosure:</strong>
+    <%= @feed_entry.enclosure %>
+  </li>
+
+  <li>
+    <strong>Entry:</strong>
+    <%= @feed_entry.entry_id %>
+  </li>
+
+  <li>
+    <strong>Image:</strong>
+    <%= @feed_entry.image %>
+  </li>
+
+  <li>
+    <strong>Subtitle:</strong>
+    <%= @feed_entry.subtitle %>
+  </li>
+
+  <li>
+    <strong>Summary:</strong>
+    <%= @feed_entry.summary %>
+  </li>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @feed_entry.title %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: feed_entry_path(@conn, :edit, @feed_entry) %>
+<%= link "Back", to: feed_entry_path(@conn, :index) %>
