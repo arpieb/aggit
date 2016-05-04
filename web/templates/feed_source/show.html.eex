@@ -1,0 +1,63 @@
+<h2>Show feed source</h2>
+
+<ul>
+
+  <li>
+    <strong>Feed url:</strong>
+    <%= @feed_source.feed_url %>
+  </li>
+
+  <li>
+    <strong>Feed name:</strong>
+    <%= @feed_source.feed_name %>
+  </li>
+
+  <li>
+    <strong>Author:</strong>
+    <%= @feed_source.author %>
+  </li>
+
+  <li>
+    <strong>Image:</strong>
+    <%= @feed_source.image %>
+  </li>
+
+  <li>
+    <strong>Link:</strong>
+    <%= @feed_source.link %>
+  </li>
+
+  <li>
+    <strong>Language:</strong>
+    <%= @feed_source.language %>
+  </li>
+
+  <li>
+    <strong>Subtitle:</strong>
+    <%= @feed_source.subtitle %>
+  </li>
+
+  <li>
+    <strong>Summary:</strong>
+    <%= @feed_source.summary %>
+  </li>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @feed_source.title %>
+  </li>
+
+  <li>
+    <strong>Last retrieved:</strong>
+    <%= @feed_source.last_retrieved %>
+  </li>
+
+  <li>
+    <strong>Schedule:</strong>
+    <%= @feed_source.schedule %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: feed_source_path(@conn, :edit, @feed_source) %>
+<%= link "Back", to: feed_source_path(@conn, :index) %>

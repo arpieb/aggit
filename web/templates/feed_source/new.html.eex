@@ -1,0 +1,6 @@
+<h2>New feed source</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: feed_source_path(@conn, :create) %>
+
+<%= link "Back", to: feed_source_path(@conn, :index) %>

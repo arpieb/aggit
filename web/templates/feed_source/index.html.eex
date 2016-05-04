@@ -1,0 +1,46 @@
+<h2>Listing feed sources</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Feed url</th>
+      <th>Feed name</th>
+      <th>Author</th>
+      <th>Image</th>
+      <th>Link</th>
+      <th>Language</th>
+      <th>Subtitle</th>
+      <th>Summary</th>
+      <th>Title</th>
+      <th>Last retrieved</th>
+      <th>Schedule</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for feed_source <- @feed_sources do %>
+    <tr>
+      <td><%= feed_source.feed_url %></td>
+      <td><%= feed_source.feed_name %></td>
+      <td><%= feed_source.author %></td>
+      <td><%= feed_source.image %></td>
+      <td><%= feed_source.link %></td>
+      <td><%= feed_source.language %></td>
+      <td><%= feed_source.subtitle %></td>
+      <td><%= feed_source.summary %></td>
+      <td><%= feed_source.title %></td>
+      <td><%= feed_source.last_retrieved %></td>
+      <td><%= feed_source.schedule %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: feed_source_path(@conn, :show, feed_source), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: feed_source_path(@conn, :edit, feed_source), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: feed_source_path(@conn, :delete, feed_source), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New feed source", to: feed_source_path(@conn, :new) %>
