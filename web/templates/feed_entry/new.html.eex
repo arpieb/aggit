@@ -1,6 +1,0 @@
-<h2>New feed entry</h2>
-
-<%= render "form.html", changeset: @changeset,
-                        action: feed_entry_path(@conn, :create) %>
-
-<%= link "Back", to: feed_entry_path(@conn, :index) %>

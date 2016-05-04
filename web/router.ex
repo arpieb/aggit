@@ -20,7 +20,6 @@ defmodule Aggit.Router do
 
     # Resource controllers.
     resources "/feeds", FeedController
-    resources "/feed_entries", FeedEntryController
   end
 
   # Other scopes may use custom stacks.

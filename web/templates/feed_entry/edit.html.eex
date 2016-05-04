@@ -1,6 +1,0 @@
-<h2>Edit feed entry</h2>
-
-<%= render "form.html", changeset: @changeset,
-                        action: feed_entry_path(@conn, :update, @feed_entry) %>
-
-<%= link "Back", to: feed_entry_path(@conn, :index) %>
