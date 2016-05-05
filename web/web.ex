@@ -52,6 +52,7 @@ defmodule Aggit.Web do
       import Aggit.Router.Helpers
       import Aggit.ErrorHelpers
       import Aggit.Gettext
+      import Aggit.ViewHelpers
     end
   end
 

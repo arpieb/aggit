@@ -6,69 +6,24 @@
   <% end %>
 
   <div class="form-group">
-    <%= label f, :feed_url, class: "control-label" %>
-    <%= text_input f, :feed_url, class: "form-control" %>
+    <%= label f, :feed_url, "Feed URL", class: "control-label" %>
+    <%= url_input f, :feed_url, class: "form-control" %>
     <%= error_tag f, :feed_url %>
+    <%= help_text "URL to retrieve this feed from.  Should be an #{safe_link("ATOM", to: "https://en.wikipedia.org/wiki/Atom_%28standard%29", target: "_blank")} or #{safe_link("RSS", to: "https://en.wikipedia.org/wiki/RSS", target: "_blank")} source." %>
   </div>
 
   <div class="form-group">
-    <%= label f, :feed_name, class: "control-label" %>
+    <%= label f, :feed_name, "Name", class: "control-label" %>
     <%= text_input f, :feed_name, class: "form-control" %>
     <%= error_tag f, :feed_name %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :author, class: "control-label" %>
-    <%= text_input f, :author, class: "form-control" %>
-    <%= error_tag f, :author %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :image, class: "control-label" %>
-    <%= text_input f, :image, class: "form-control" %>
-    <%= error_tag f, :image %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :link, class: "control-label" %>
-    <%= text_input f, :link, class: "form-control" %>
-    <%= error_tag f, :link %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :language, class: "control-label" %>
-    <%= text_input f, :language, class: "form-control" %>
-    <%= error_tag f, :language %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :subtitle, class: "control-label" %>
-    <%= text_input f, :subtitle, class: "form-control" %>
-    <%= error_tag f, :subtitle %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :summary, class: "control-label" %>
-    <%= text_input f, :summary, class: "form-control" %>
-    <%= error_tag f, :summary %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :title, class: "control-label" %>
-    <%= text_input f, :title, class: "form-control" %>
-    <%= error_tag f, :title %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :last_retrieved, class: "control-label" %>
-    <%= datetime_select f, :last_retrieved, class: "form-control" %>
-    <%= error_tag f, :last_retrieved %>
+    <%= help_text "Administrative name for this feed.  Note that the actual title extracted from the feed will be stored separately." %>
   </div>
 
   <div class="form-group">
     <%= label f, :schedule, class: "control-label" %>
     <%= text_input f, :schedule, class: "form-control" %>
     <%= error_tag f, :schedule %>
+    <%= help_text "A cron-formatted schedule string, see #{safe_link("Quantum", to: "https://hex.pm/packages/quantum", target: "_blank")} package for details." %>
   </div>
 
   <div class="form-group">

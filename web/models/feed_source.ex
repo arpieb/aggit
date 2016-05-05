@@ -58,7 +58,7 @@ defmodule Aggit.FeedSource do
   def validate_feed(changeset, field) do
     validate_change changeset, field, fn(field, value) ->
       case HTTPoison.get(value) do
-        {:ok, _} -> []
+        {:ok, %HTTPoison.Response{body: body, status_code: 200}} -> []
         _ -> [{field, "URL is not reachable"}]
       end
     end
