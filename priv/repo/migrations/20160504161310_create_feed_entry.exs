@@ -10,7 +10,7 @@ defmodule Aggit.Repo.Migrations.CreateFeedEntry do
       add :entry_id, :string
       add :image, :string
       add :subtitle, :string
-      add :summary, :string
+      add :summary, :text
       add :title, :string
 
       timestamps

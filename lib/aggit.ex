@@ -13,6 +13,7 @@ defmodule Aggit do
       supervisor(Aggit.Repo, []),
       # Here you could define other workers and supervisors as children
       # worker(Aggit.Worker, [arg1, arg2, arg3]),
+      worker(Aggit.FetchJob, [], restart: :transient),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

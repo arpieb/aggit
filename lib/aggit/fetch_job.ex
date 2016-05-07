@@ -5,9 +5,31 @@ defmodule Aggit.FetchJob do
 
   require Logger
 
+  use GenServer
+
   alias Aggit.Repo
   alias Aggit.FeedSource
   alias Aggit.FeedEntry
+
+  @doc """
+  Implements GenServer callback.
+  """
+  def start_link do
+  IO.puts "Made it to start_link"
+    GenServer.start_link(__MODULE__, %{})
+  end
+
+  @doc """
+  Implements GenServer callback.
+  Loads and registers all scheduled feed source fetch jobs.
+  """
+  def init(args) do
+    # Register all feed source fetch jobs from the database on start.
+    register_all_jobs()
+
+    # Tell GenServer we're done here, nothing else to see...
+    :ignore
+  end
 
   @doc """
   Executes the scheduled fetch task; see register_job/1.
@@ -26,14 +48,14 @@ defmodule Aggit.FetchJob do
     case FeederEx.parse(body) do
       {:ok, feed, _} ->
         # Update feed source record.
-        feed = Map.put(feed, :last_retrieved, Ecto.DateTime.utc())
-        feed_source_changeset = FeedSource.changeset(feed_source, feed)
+        feed_map = Map.put(Map.from_struct(feed), :last_retrieved, Ecto.DateTime.utc())
+        feed_source_changeset = FeedSource.changeset(feed_source, feed_map)
         case Repo.update(feed_source_changeset) do
           {:ok, _feed_source} ->
             # Insert any new feed entry records.
             Enum.map(feed.entries, fn(entry) ->
-              feed_entry_changeset = FeedEntry.changeset(%FeedEntry{}, entry)
-              Repo.insert(feed_entry_changeset)
+              feed_entry_changeset = FeedEntry.changeset(%FeedEntry{}, Map.from_struct(entry))
+              Repo.insert_or_update(feed_entry_changeset)
               end
             )
           _ -> Logger.error("Unable to update FeedSource with id #{Integer.to_string(feed_source.id)}")
@@ -58,7 +80,7 @@ defmodule Aggit.FetchJob do
         args: [feed_source],
         task: {Aggit.FetchJob, :fetch_feed}
       }
-      Quantum.add_job(name, {feed_source.schedule, task})
+      Quantum.add_job(name, task)
     end
   end
 
@@ -68,7 +90,6 @@ defmodule Aggit.FetchJob do
   def register_all_jobs() do
     FeedSource
     |> Repo.all()
-    |> IO.inspect
     |> Enum.map(&register_job/1)
   end
 
