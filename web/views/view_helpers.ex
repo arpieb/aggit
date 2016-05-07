@@ -50,6 +50,7 @@ defmodule Aggit.ViewHelpers do
     {:safe, content}
   end
   def help_text(opts, [do: block]) do
+    help_text(block, opts)
   end
 
   def safe_link(text, opts \\ []) do

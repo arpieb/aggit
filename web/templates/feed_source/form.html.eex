@@ -23,7 +23,7 @@
     <%= label f, :schedule, class: "control-label" %>
     <%= text_input f, :schedule, class: "form-control" %>
     <%= error_tag f, :schedule %>
-    <%= help_text "A cron-formatted schedule string, see #{safe_link("Quantum", to: "https://hex.pm/packages/quantum", target: "_blank")} package for details." %>
+    <%= help_text "A cron-formatted schedule string based on UTC time, see #{safe_link("Quantum", to: "https://github.com/c-rack/quantum-elixir/tree/v1.7.1#crontab-format", target: "_blank")} package for details." %>
   </div>
 
   <div class="form-group">
