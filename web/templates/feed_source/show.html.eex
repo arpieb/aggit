@@ -1,5 +1,7 @@
-<h2><%= @feed_source.feed_name %></h2>
+<h2>Feed Source: <%= @feed_source.feed_name %></h2>
 <p><%= link @feed_source.feed_url, to: @feed_source.feed_url, target: "_blank" %></p>
+
+<%= raw @feed_source.summary %>
 
 <p>Some attributes retrieved from feed.</p>
 <table class="table">
@@ -11,10 +13,6 @@
     <tr>
       <td>Subtitle</td>
       <td><%= @feed_source.subtitle %></td>
-    </tr>
-    <tr>
-      <td>Summary</td>
-      <td><%= @feed_source.summary %></td>
     </tr>
 
     <tr>
@@ -32,11 +30,11 @@
     </tr>
     <tr>
       <td>Image</td>
-      <td><%= if !is_nil(@feed_source.image), do: link(@feed_source.image, to: @feed_source.image) %></td>
+      <td><%= if !is_nil(@feed_source.image), do: link(@feed_source.image, to: @feed_source.image, target: "_blank") %></td>
     </tr>
     <tr>
       <td>Link</td>
-      <td><%= if !is_nil(@feed_source.link), do: link(@feed_source.link, to: @feed_source.link) %></td>
+      <td><%= if !is_nil(@feed_source.link), do: link(@feed_source.link, to: @feed_source.link, target: "_blank") %></td>
     </tr>
     <tr>
       <td>Language</td>
