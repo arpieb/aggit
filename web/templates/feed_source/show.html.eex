@@ -1,63 +1,49 @@
-<h2>Show feed source</h2>
+<h2><%= @feed_source.feed_name %></h2>
+<p><%= link @feed_source.feed_url, to: @feed_source.feed_url, target: "_blank" %></p>
 
-<ul>
+<p>Some attributes retrieved from feed.</p>
+<table class="table">
+  <tbody>
+    <tr>
+      <td>Title</td>
+      <td><%= @feed_source.title %></td>
+    </tr>
+    <tr>
+      <td>Subtitle</td>
+      <td><%= @feed_source.subtitle %></td>
+    </tr>
+    <tr>
+      <td>Summary</td>
+      <td><%= @feed_source.summary %></td>
+    </tr>
 
-  <li>
-    <strong>Feed url:</strong>
-    <%= @feed_source.feed_url %>
-  </li>
+    <tr>
+      <td>Schedule</td>
+      <td><%= @feed_source.schedule %></td>
+    </tr>
+    <tr>
+      <td>Last Retrieved</td>
+      <td><%= @feed_source.last_retrieved %></td>
+    </tr>
 
-  <li>
-    <strong>Feed name:</strong>
-    <%= @feed_source.feed_name %>
-  </li>
+    <tr>
+      <td>Author</td>
+      <td><%= @feed_source.author %></td>
+    </tr>
+    <tr>
+      <td>Image</td>
+      <td><%= if !is_nil(@feed_source.image), do: link(@feed_source.image, to: @feed_source.image) %></td>
+    </tr>
+    <tr>
+      <td>Link</td>
+      <td><%= if !is_nil(@feed_source.link), do: link(@feed_source.link, to: @feed_source.link) %></td>
+    </tr>
+    <tr>
+      <td>Language</td>
+      <td><%= @feed_source.language %></td>
+    </tr>
+  </tbody>
+</table>
 
-  <li>
-    <strong>Author:</strong>
-    <%= @feed_source.author %>
-  </li>
-
-  <li>
-    <strong>Image:</strong>
-    <%= @feed_source.image %>
-  </li>
-
-  <li>
-    <strong>Link:</strong>
-    <%= @feed_source.link %>
-  </li>
-
-  <li>
-    <strong>Language:</strong>
-    <%= @feed_source.language %>
-  </li>
-
-  <li>
-    <strong>Subtitle:</strong>
-    <%= @feed_source.subtitle %>
-  </li>
-
-  <li>
-    <strong>Summary:</strong>
-    <%= @feed_source.summary %>
-  </li>
-
-  <li>
-    <strong>Title:</strong>
-    <%= @feed_source.title %>
-  </li>
-
-  <li>
-    <strong>Last retrieved:</strong>
-    <%= @feed_source.last_retrieved %>
-  </li>
-
-  <li>
-    <strong>Schedule:</strong>
-    <%= @feed_source.schedule %>
-  </li>
-
-</ul>
-
-<%= link "Edit", to: feed_source_path(@conn, :edit, @feed_source) %>
 <%= link "Back", to: feed_source_path(@conn, :index) %>
+<%= link "Edit", to: feed_source_path(@conn, :edit, @feed_source) %>

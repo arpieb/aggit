@@ -23,7 +23,51 @@
     <%= label f, :schedule, class: "control-label" %>
     <%= text_input f, :schedule, class: "form-control" %>
     <%= error_tag f, :schedule %>
-    <%= help_text "A cron-formatted schedule string based on UTC time, see #{safe_link("Quantum", to: "https://github.com/c-rack/quantum-elixir/tree/v1.7.1#crontab-format", target: "_blank")} package for details." %>
+    <%= help_text """
+    <p>A cron-formatted schedule string based on UTC time, see #{safe_link("Quantum", to: "https://github.com/c-rack/quantum-elixir/tree/v1.7.1#crontab-format", target: "_blank")} package for details. Some useful shortcuts are:</p>
+      <table>
+        <thead>
+          <tr>
+            <th>String</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>@annually</code></td>
+            <td>Run once a year, same as <code>"0 0 1 1 *"</code> or <code>@yearly</code></td>
+          </tr>
+          <tr>
+            <td><code>@daily</code></td>
+            <td>Run once a day, same as <code>"0 0 * * *"</code> or <code>@midnight</code></td>
+          </tr>
+          <tr>
+            <td><code>@hourly</code></td>
+            <td>Run once an hour, same as <code>"0 * * * *"</code></td>
+          </tr>
+          <tr>
+            <td><code>@midnight</code></td>
+            <td>Run once a day, same as <code>"0 0 * * *"</code> or <code>@daily</code></td>
+          </tr>
+          <tr>
+            <td><code>@monthly</code></td>
+            <td>Run once a month, same as <code>"0 0 1 * *"</code></td>
+          </tr>
+          <tr>
+            <td><code>@reboot</code></td>
+            <td>Run once, at startup</td>
+          </tr>
+          <tr>
+            <td><code>@weekly</code></td>
+            <td>Run once a week, same as <code>"0 0 * * 0"</code></td>
+          </tr>
+          <tr>
+            <td><code>@yearly</code></td>
+            <td>Run once a year, same as <code>"0 0 1 1 *"</code> or <code>@annually</code></td>
+          </tr>
+        </tbody>
+      </table>
+    """ %>
   </div>
 
   <div class="form-group">
