@@ -20,7 +20,7 @@ defmodule Aggit.Router do
 
     # Resource routes.
     resources "/feed_sources", FeedSourceController
-    resources "/feed_entries", FeedEntryController
+    resources "/feed_entries", FeedEntryController, only: [:index, :show]
   end
 
   # Other scopes may use custom stacks.
