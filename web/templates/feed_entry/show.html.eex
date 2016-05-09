@@ -1,53 +1,31 @@
-<h2>Show feed entry</h2>
+<h2><%= @feed_entry.title %></h2>
+<p><%= link @feed_entry.link, to: @feed_entry.link, target: "_blank" %></p>
 
-<ul>
+<%= raw @feed_entry.summary %>
 
-  <li>
-    <strong>Link:</strong>
-    <%= @feed_entry.link %>
-  </li>
+<table class="table">
+  <tbody>
+    <tr>
+      <td>Author</td>
+      <td><%= @feed_entry.author %></td>
+    </tr>
+    <tr>
+      <td>Duration</td>
+      <td><%= @feed_entry.duration %></td>
+    </tr>
+    <tr>
+      <td>Entry ID</td>
+      <td><%= @feed_entry.entry_id %></td>
+    </tr>
+    <tr>
+      <td>Image</td>
+      <td><%= if !is_nil(@feed_entry.image), do: link(@feed_entry.image, to: @feed_entry.image, target: "_blank") %></td>
+    </tr>
+    <tr>
+      <td>Subtitle</td>
+      <td><%= @feed_entry.subtitle %></td>
+    </tr>
+  </tbody>
+</table>
 
-  <li>
-    <strong>Author:</strong>
-    <%= @feed_entry.author %>
-  </li>
-
-  <li>
-    <strong>Duration:</strong>
-    <%= @feed_entry.duration %>
-  </li>
-
-  <li>
-    <strong>Enclosure:</strong>
-    <%= @feed_entry.enclosure %>
-  </li>
-
-  <li>
-    <strong>Entry:</strong>
-    <%= @feed_entry.entry_id %>
-  </li>
-
-  <li>
-    <strong>Image:</strong>
-    <%= @feed_entry.image %>
-  </li>
-
-  <li>
-    <strong>Subtitle:</strong>
-    <%= @feed_entry.subtitle %>
-  </li>
-
-  <li>
-    <strong>Summary:</strong>
-    <%= @feed_entry.summary %>
-  </li>
-
-  <li>
-    <strong>Title:</strong>
-    <%= @feed_entry.title %>
-  </li>
-
-</ul>
-
-<%= link "Edit", to: feed_entry_path(@conn, :edit, @feed_entry) %>
 <%= link "Back", to: feed_entry_path(@conn, :index) %>

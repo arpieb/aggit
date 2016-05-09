@@ -1,42 +1,18 @@
-<h2>Listing feed entries</h2>
+<h2>Feed Entries</h2>
 
 <table class="table">
   <thead>
     <tr>
-      <th>Link</th>
-      <th>Author</th>
-      <th>Duration</th>
-      <th>Enclosure</th>
-      <th>Entry</th>
-      <th>Image</th>
-      <th>Subtitle</th>
-      <th>Summary</th>
       <th>Title</th>
-
-      <th></th>
+      <th>Link</th>
     </tr>
   </thead>
   <tbody>
 <%= for feed_entry <- @feed_entries do %>
     <tr>
-      <td><%= feed_entry.link %></td>
-      <td><%= feed_entry.author %></td>
-      <td><%= feed_entry.duration %></td>
-      <td><%= feed_entry.enclosure %></td>
-      <td><%= feed_entry.entry_id %></td>
-      <td><%= feed_entry.image %></td>
-      <td><%= feed_entry.subtitle %></td>
-      <td><%= feed_entry.summary %></td>
-      <td><%= feed_entry.title %></td>
-
-      <td class="text-right">
-        <%= link "Show", to: feed_entry_path(@conn, :show, feed_entry), class: "btn btn-default btn-xs" %>
-        <%= link "Edit", to: feed_entry_path(@conn, :edit, feed_entry), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: feed_entry_path(@conn, :delete, feed_entry), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
-      </td>
+      <td><%= link feed_entry.title, to: feed_entry_path(@conn, :show, feed_entry) %></td>
+      <td><%= if !is_nil(feed_entry.link), do: link(feed_entry.link, to: feed_entry.link, target: "_blank") %></td>
     </tr>
 <% end %>
   </tbody>
 </table>
-
-<%= link "New feed entry", to: feed_entry_path(@conn, :new) %>
