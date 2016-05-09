@@ -29,7 +29,7 @@ defmodule Aggit.FeedSourceControllerTest do
   test "shows chosen resource", %{conn: conn} do
     feed_source = Repo.insert! %FeedSource{feed_name: "some content", feed_url: "foo", link: "bar"}
     conn = get conn, feed_source_path(conn, :show, feed_source)
-    assert html_response(conn, 200) =~ "Feed Source: some content"
+    assert html_response(conn, 200) =~ "some content"
   end
 
   test "renders page not found when id is nonexistent", %{conn: conn} do

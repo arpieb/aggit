@@ -1,7 +1,13 @@
-<h2><%= @feed_entry.title %></h2>
-<p><%= link @feed_entry.link, to: @feed_entry.link, target: "_blank" %></p>
+<%= link "Feed Entries", to: feed_entry_path(@conn, :index) %>
 
-<%= raw @feed_entry.summary %>
+<h2><%= @feed_entry.title %></h2>
+<p>
+  <%= link @feed_entry.link, to: @feed_entry.link, target: "_blank" %>
+</p>
+
+<div class="feed-entry-summary">
+  <%= raw @feed_entry.summary %>
+</div>
 
 <table class="table">
   <tbody>
@@ -28,4 +34,3 @@
   </tbody>
 </table>
 
-<%= link "Back", to: feed_entry_path(@conn, :index) %>
