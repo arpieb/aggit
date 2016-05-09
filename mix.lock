@@ -26,6 +26,8 @@
   "postgrex": {:hex, :postgrex, "0.11.1"},
   "quantum": {:hex, :quantum, "1.7.1"},
   "ranch": {:hex, :ranch, "1.2.1"},
+  "scrivener": {:hex, :scrivener, "1.1.4"},
+  "scrivener_html": {:hex, :scrivener_html, "1.0.9"},
   "ssl_verify_fun": {:hex, :ssl_verify_fun, "1.1.0"},
   "timex": {:hex, :timex, "2.1.4"},
   "tzdata": {:hex, :tzdata, "0.5.7"}}

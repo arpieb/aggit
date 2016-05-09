@@ -5,9 +5,9 @@ defmodule Aggit.FeedEntryController do
 
   plug :scrub_params, "feed_entry" when action in [:create, :update]
 
-  def index(conn, _params) do
-    feed_entries = Repo.all(FeedEntry)
-    render(conn, "index.html", feed_entries: feed_entries)
+  def index(conn, params) do
+    page = Repo.paginate(FeedEntry, params)
+    render(conn, "index.html", page: page)
   end
 
   def new(conn, _params) do

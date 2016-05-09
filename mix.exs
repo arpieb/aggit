@@ -40,7 +40,9 @@ defmodule Aggit.Mixfile do
      {:cowboy, "~> 1.0"},
      {:feeder_ex, "~> 0.0.2"},
      {:httpoison, "~> 0.8.3"},
-     {:quantum, "~> 1.7"},]
+     {:quantum, "~> 1.7"},
+     {:scrivener, "~> 1.1"},
+     {:scrivener_html, "~> 1.0"},]
   end
 
   # Aliases are shortcut or tasks specific to the current project.

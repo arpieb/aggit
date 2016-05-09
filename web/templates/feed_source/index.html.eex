@@ -1,10 +1,12 @@
 <h2>Feed Sources</h2>
 
+<%= link "New feed source", to: feed_source_path(@conn, :new) %>
+
 <table class="table">
   <thead>
     <tr>
       <th>Name</th>
-      <th>URL</th>
+      <th>Link</th>
       <th>Last retrieved</th>
       <th>Schedule</th>
 
@@ -12,10 +14,10 @@
     </tr>
   </thead>
   <tbody>
-<%= for feed_source <- @feed_sources do %>
+<%= for feed_source <- @page.entries do %>
     <tr>
       <td><%= link feed_source.feed_name, to: feed_source_path(@conn, :show, feed_source) %></td>
-      <td><%= link feed_source.feed_url, to: feed_source.feed_url, target: "_blank" %></td>
+      <td><%= link "View", to: feed_source.feed_url, target: "_blank" %></td>
       <td><%= feed_source.last_retrieved %></td>
       <td><%= feed_source.schedule %></td>
 
@@ -28,4 +30,5 @@
   </tbody>
 </table>
 
-<%= link "New feed source", to: feed_source_path(@conn, :new) %>
+<%= pagination_links @conn, @page %>
+

@@ -8,11 +8,13 @@
     </tr>
   </thead>
   <tbody>
-<%= for feed_entry <- @feed_entries do %>
+<%= for feed_entry <- @page.entries do %>
     <tr>
       <td><%= link feed_entry.title, to: feed_entry_path(@conn, :show, feed_entry) %></td>
-      <td><%= if !is_nil(feed_entry.link), do: link(feed_entry.link, to: feed_entry.link, target: "_blank") %></td>
+      <td><%= if !is_nil(feed_entry.link), do: link("View", to: feed_entry.link, target: "_blank") %></td>
     </tr>
 <% end %>
   </tbody>
 </table>
+
+<%= pagination_links @conn, @page %>

@@ -9,9 +9,9 @@ defmodule Aggit.FeedSourceController do
   @doc """
   Display landing page for feed sources.
   """
-  def index(conn, _params) do
-    feed_sources = Repo.all(FeedSource)
-    render(conn, "index.html", feed_sources: feed_sources)
+  def index(conn, params) do
+    page = Repo.paginate(FeedSource, params)
+    render(conn, "index.html", page: page)
   end
 
   @doc """
