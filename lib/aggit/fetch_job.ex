@@ -15,7 +15,6 @@ defmodule Aggit.FetchJob do
   Implements GenServer callback.
   """
   def start_link do
-  IO.puts "Made it to start_link"
     GenServer.start_link(__MODULE__, %{})
   end
 
@@ -23,7 +22,7 @@ defmodule Aggit.FetchJob do
   Implements GenServer callback.
   Loads and registers all scheduled feed source fetch jobs.
   """
-  def init(args) do
+  def init(_args) do
     # Register all feed source fetch jobs from the database on start.
     register_all_jobs()
 
@@ -44,24 +43,26 @@ defmodule Aggit.FetchJob do
   @doc """
   Process feed and create new entries, see fetch_feed/1.
   """
-  defp process_feed(feed_source, body) do
+  def process_feed(feed_source, body) do
     case FeederEx.parse(body) do
       {:ok, feed, _} ->
         # Update feed source record.
         feed_map = Map.put(Map.from_struct(feed), :last_retrieved, Ecto.DateTime.utc())
         feed_source_changeset = FeedSource.changeset(feed_source, feed_map)
         case Repo.update(feed_source_changeset) do
-          {:ok, _feed_source} ->
-            # Insert any new feed entry records.
-            Enum.map(feed.entries, fn(entry) ->
-              feed_entry_changeset = FeedEntry.changeset(%FeedEntry{}, Map.from_struct(entry))
-              Repo.insert_or_update(feed_entry_changeset)
-              end
-            )
+          {:ok, _feed_source} -> Enum.map(feed.entries, &(spawn(Aggit.FetchJob, :process_feed_entry, [feed_source, &1])))
           _ -> Logger.error("Unable to update FeedSource with id #{Integer.to_string(feed_source.id)}")
         end
       _ -> Logger.error("Unable to parse feed data from #{feed_source.feed_url} [#{Integer.to_string(feed_source.id)}]")
     end
+  end
+
+  @doc """
+  Process individual feed entry, see process_feed/2.
+  """
+  def process_feed_entry(feed_source, feed_entry) do
+    feed_entry_changeset = FeedEntry.changeset(%FeedEntry{}, Map.from_struct(feed_entry))
+    Repo.insert_or_update(feed_entry_changeset)
   end
 
   @doc """
@@ -90,7 +91,7 @@ defmodule Aggit.FetchJob do
   def register_all_jobs() do
     FeedSource
     |> Repo.all()
-    |> Enum.map(&register_job/1)
+    |> Enum.map(&(spawn(Aggit.FetchJob, :register_job, [&1])))
   end
 
   @doc """
