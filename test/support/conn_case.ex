@@ -23,7 +23,7 @@ defmodule Aggit.ConnCase do
       alias Aggit.Repo
       import Ecto
       import Ecto.Changeset
-      import Ecto.Query, only: [from: 1, from: 2]
+      import Ecto.Query
 
       import Aggit.Router.Helpers
 
@@ -33,10 +33,12 @@ defmodule Aggit.ConnCase do
   end
 
   setup tags do
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Aggit.Repo)
+
     unless tags[:async] do
-      Ecto.Adapters.SQL.restart_test_transaction(Aggit.Repo, [])
+      Ecto.Adapters.SQL.Sandbox.mode(Aggit.Repo, {:shared, self()})
     end
 
-    {:ok, conn: Phoenix.ConnTest.conn()}
+    {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 end

@@ -17,3 +17,4 @@ config :aggit, Aggit.Repo,
   database: "aggit_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+config :aggit, ecto_repos: [Aggit.Repo]

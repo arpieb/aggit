@@ -20,7 +20,7 @@ defmodule Aggit.Mixfile do
     [mod: {Aggit, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
                     :phoenix_ecto, :postgrex,
-                    :feeder_ex, :httpoison, :quantum,]]
+                    :feeder_ex, :httpoison, :quantum, :scrivener_ecto]]
   end
 
   # Specifies which paths to compile per environment.
@@ -31,20 +31,20 @@ defmodule Aggit.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [
-      {:phoenix, "~> 1.2.0"},
-      {:phoenix_pubsub, "~> 1.0"},
-      {:phoenix_ecto, "~> 3.0-rc"},
-      {:postgrex, ">= 0.0.0"},
-      {:phoenix_html, "~> 2.4"},
-      {:phoenix_live_reload, "~> 1.0", only: :dev},
-      {:gettext, "~> 0.9"},
-      {:cowboy, "~> 1.0"},
-      {:feeder_ex, "~> 0.0.2"},
-      {:httpoison, "~> 0.8.3"},
-      {:quantum, "~> 1.7"},
-      {:scrivener, "~> 2.1"},
-      {:scrivener_html, "~> 1.3"},
+    [{:phoenix, "~> 1.2.1"},
+     {:phoenix_pubsub, "~> 1.0"},
+     {:phoenix_ecto, "~> 3.0"},
+     {:postgrex, ">= 0.0.0"},
+     {:phoenix_html, "~> 2.6"},
+     {:phoenix_live_reload, "~> 1.0", only: :dev},
+     {:gettext, "~> 0.11"},
+     {:cowboy, "~> 1.0"},
+     {:feeder_ex, "~> 0.0.4"},
+     {:httpoison, "~> 0.9.1"},
+     {:quantum, "~> 1.7"},
+     {:scrivener, "~> 2.1"},
+     {:scrivener_html, "~> 1.3"},
+     {:scrivener_ecto, "~> 1.0"},
     ]
   end
 
@@ -56,6 +56,7 @@ defmodule Aggit.Mixfile do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     ["ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
-     "ecto.reset": ["ecto.drop", "ecto.setup"]]
+     "ecto.reset": ["ecto.drop", "ecto.setup"],
+     "test": ["ecto.create --quiet", "ecto.migrate", "test"]]
   end
 end

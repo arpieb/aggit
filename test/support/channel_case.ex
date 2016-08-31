@@ -20,20 +20,22 @@ defmodule Aggit.ChannelCase do
       # Import conveniences for testing with channels
       use Phoenix.ChannelTest
 
-      alias Aggit.Repo
+      alias Aggit2.Repo
       import Ecto
       import Ecto.Changeset
-      import Ecto.Query, only: [from: 1, from: 2]
+      import Ecto.Query
 
 
       # The default endpoint for testing
-      @endpoint Aggit.Endpoint
+      @endpoint Aggit2.Endpoint
     end
   end
 
   setup tags do
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Aggit2.Repo)
+
     unless tags[:async] do
-      Ecto.Adapters.SQL.restart_test_transaction(Aggit.Repo, [])
+      Ecto.Adapters.SQL.Sandbox.mode(Aggit2.Repo, {:shared, self()})
     end
 
     :ok

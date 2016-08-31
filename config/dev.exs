@@ -40,3 +40,4 @@ config :aggit, Aggit.Repo,
   database: "aggit_dev",
   hostname: "localhost",
   pool_size: 10
+config :aggit, ecto_repos: [Aggit.Repo]
